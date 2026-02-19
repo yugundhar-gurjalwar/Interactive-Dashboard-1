@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  backend:
+    build: 
+      context: ./backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+    environment:
+      - POETRY_VIRTUALENVS_CREATE=false
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile 
+      # Note: For dev, you might want a node image and mount volume, 
+      # but for this file we use the production build as base or a dev setup.
+      # Simplified for now to use the Dockerfile we made (build->nginx).
+      # For actual local dev with hot reload, better to use node image directly:
+    # build:
+    #   context: ./frontend
+    #   target: build 
+    #   # But since we want to dev, let's use a node image overriding the Dockerfile
+    image: node:18-alpine
+    working_dir: /app
+    volumes:
+      - ./frontend:/app
+    ports:
+      - "5173:5173"
+    command: npm run dev -- --host
+    depends_on:
+      - backend
+
+  # database:  # Optional: PostgreSQL
+  #   image: postgres:15
+  #   volumes:
+  #     - postgres_data:/var/lib/postgresql/data
+  #   environment:
+  #     POSTGRES_USER: user
+  #     POSTGRES_PASSWORD: password
+  #     POSTGRES_DB: pocketpaw
+
+# volumes:
+#   postgres_data:
