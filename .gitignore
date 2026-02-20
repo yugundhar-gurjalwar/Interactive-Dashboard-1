@@ -1,0 +1,50 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyc
+*.pyd
+*.pdb
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+.venv/
+venv/
+venv_312/
+env/
+
+# Database & binary artifacts
+*.db
+*.pkl
+*.sqlite3
+
+# Node
+node_modules/
+package-lock.json
+
+# Env files
+.env
+*.env
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.suo
+*.user
+
+# Logs
+*.log
+
+# Dist / Build outputs
+frontend/dist/
+frontend/build/
+
+# Misc
+tunnels.json
+run_ngrok_headless.ps1
