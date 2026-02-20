@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = localStorage.getItem('vite-api-url') || import.meta.env.VITE_API_URL || 'https://2661-103-174-80-40.ngrok-free.app/api/v1';
+const API_URL = localStorage.getItem('vite-api-url') || import.meta.env.VITE_API_URL || 'https://2661-103-174-80-40.ngrok-free.app/api/v1'; // Fallback to hardcoded ngrok URL
 
 const api = axios.create({
   baseURL: API_URL,
