@@ -6,8 +6,6 @@ export default defineConfig({
   plugins: [react()],
   base: "/Interactive-Dashboard-1/",
   build: {
-    outDir: "../docs",
-    emptyOutDir: true,
-    sourcemap: true,
+    sourcemap: false,
   },
 })
