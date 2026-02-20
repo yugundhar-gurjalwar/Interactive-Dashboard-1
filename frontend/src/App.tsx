@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import Layout from './components/Layout';
 import DashboardHome from './pages/DashboardHome';
@@ -10,7 +10,7 @@ import SettingsPage from './pages/SettingsPage';
 
 const App = () => {
   return (
-    <Router basename="/web-project">
+    <HashRouter>
       <AuthProvider>
         <Routes>
           <Route path="/" element={<Layout />}>
@@ -24,7 +24,7 @@ const App = () => {
           <Route path="*" element={<Navigate to="/dashboard" replace />} />
         </Routes>
       </AuthProvider>
-    </Router>
+    </HashRouter>
   );
 };
 
