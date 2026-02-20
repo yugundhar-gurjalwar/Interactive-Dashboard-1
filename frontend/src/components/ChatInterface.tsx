@@ -37,7 +37,12 @@ const ChatInterface: React.FC = () => {
     const fetchConversations = async () => {
         try {
             const response = await api.get('/conversations/');
-            setConversations(response.data);
+            if (Array.isArray(response.data)) {
+                setConversations(response.data);
+            } else {
+                console.error("Expected array for conversations, got:", response.data);
+                setConversations([]);
+            }
         } catch (error) {
             console.error("Failed to fetch conversations", error);
         }
