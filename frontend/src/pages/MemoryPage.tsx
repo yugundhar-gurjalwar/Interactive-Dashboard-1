@@ -24,7 +24,12 @@ const MemoryPage: React.FC = () => {
         try {
             setLoading(true);
             const response = await api.get('/memory/');
-            setMemories(response.data);
+            if (Array.isArray(response.data)) {
+                setMemories(response.data);
+            } else {
+                console.error("Expected array but got:", response.data);
+                setMemories([]);
+            }
         } catch (error) {
             console.error("Failed to fetch memories", error);
         } finally {
